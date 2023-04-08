@@ -1,19 +1,31 @@
 import time
+import os
 
-def TambahList(list,Addvar): #built-in .append()
-    templist = [0 for i in range(PanjangList(list)+1)]
-    for i in range(PanjangList(templist)):
-        if(i != PanjangList(templist)-1):
-            templist[i] = list[i]
-        else:
-            templist[i] = Addvar
-    return templist
+def TambahList(list1,Addvar): #built-in .append()
+    if(isinstance(Addvar,int)  or isinstance(Addvar,str)):
+        templist = [0 for i in range(PanjangList(list1)+1)]
+        for i in range(PanjangList(templist)):
+            if(i < PanjangList(templist)-1):
+                templist[i] = list1[i]
+            else:
+                templist[i] = Addvar
+        return templist
+    else:
+        list2 = Addvar
+        templist = [0 for i in range(PanjangList(list1)+PanjangList(list2))]
+        for i in range(PanjangList(templist)):
+            if(i < PanjangList(templist)-PanjangList(list2)):
+                templist[i] = list1[i]
+            else:
+                templist[i] = list2[i-PanjangList(list1)]
+        return templist
 
-def PanjangList(list): #built-in len()
+def PanjangList(list1): #built-in len()
     count = 0
-    for i in (list):
-        count += 1
+    for i in list1:
+        count+=1 
     return count
+
 
 def SortDariTerkecil(list): # built-in sort.ascending()
     for i in range(PanjangList(list)):
@@ -31,10 +43,22 @@ def SortDariTerbesar(list): # built-in sort.descending
                maksimum = j
         (list[i], list[maksimum]) = (list[maksimum], list[i])
 
-def SearchRandomNumber(minimum,maximum): # built-in random generator
-    now = str(time.perf_counter())
-    random = float(now[4])/10
-    print(int(minimum + random*(maximum-minimum)))
+def SearchRandomSeed(): # built-in random generator
+    now = time.perf_counter()
+    ProcessId= os.getpid()
+    seed = int(now * ProcessId)
+
+    return seed
+    
+def SearchRandomNumber(minimum,maximum):
+    seed = SearchRandomSeed()
+    a = 1662533
+    c = 1283463648
+    m = 2**32
+    r = (a * seed + c) % m
+    hasil = minimum + int((maximum - minimum + 1) * (r / (m + 1)))
+
+    return hasil
 
 def Maksimum(list):
     SortDariTerbesar(list)
@@ -104,4 +128,21 @@ def reverse(list):
     for i in range(PanjangList(list)-1,-1,-1):
         templist = TambahList(templist,list[i])
     return templist
+
+def clear(list):
+    list = []
+    return list
+
+def split(list,delimeters):
+    templist1 = []
+    word = ""
+    for i in list:
+        if i != delimeters:
+            word += i
+        else:
+            templist1 = TambahList(templist1,str(word))
+            word= ''
+    if word:
+        templist1 = TambahList(templist1,word)
+    return templist1
 
