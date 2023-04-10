@@ -20,6 +20,17 @@ def TambahList(list1,Addvar): #built-in .append()
                 templist[i] = list2[i-PanjangList(list1)]
         return templist
 
+def TambahListMatriks2xn(list1,list2):
+    templist = [[]]
+    templist2 = []
+    for i in range(PanjangList(list1) + PanjangList(list2)):
+        if(i < PanjangList(list1)):
+            templist2 = [list1[i]]
+            templist = [TambahList(templist,templist2)]
+        else:
+            templist2 = [list2[i-PanjangList(list1)]]
+            templist = [TambahList(templist,templist2)]
+    return templist
 def PanjangList(list1): #built-in len()
     count = 0
     for i in list1:
@@ -43,15 +54,15 @@ def SortDariTerbesar(list): # built-in sort.descending
                maksimum = j
         (list[i], list[maksimum]) = (list[maksimum], list[i])
 
-def SearchRandomSeed(): # built-in random generator
+def SearchRandomSeed(k): # built-in random generator # k untuk biar lebih random aja
     now = time.perf_counter()
     ProcessId= os.getpid()
-    seed = int(now * ProcessId)
+    seed = int(now * ProcessId * k)
 
     return seed
     
-def SearchRandomNumber(minimum,maximum):
-    seed = SearchRandomSeed()
+def SearchRandomNumber(minimum,maximum,k): # k agar nilai yang dihasilkan lebih random
+    seed = SearchRandomSeed(k)
     a = 1662533
     c = 1283463648
     m = 2**32
@@ -98,7 +109,8 @@ def count(list,angkayangingindicari):
         if list[i] == angkayangingindicari:
             count += 1
     return count
-def pop(list,indexyangingindihapus):
+
+def pop1Matriks(list,indexyangingindihapus):
     templist = []
     for i in range(PanjangList(list)):
         if (i == indexyangingindihapus):
@@ -107,8 +119,18 @@ def pop(list,indexyangingindihapus):
             templist = TambahList(templist,list[i])
     return templist
 
-def extend(list1,list2):
+def pop2Matriks(list,indexyanginginindihapus):
     templist = []
+    templist2 = []
+    for i in range(PanjangList(list)):
+        templist2 = [list[i]]
+        if (i == indexyanginginindihapus):
+            continue
+        else:
+            templist = TambahList(templist,templist2)
+    return templist
+def extend(list1,list2):
+    templist1 = []
     for i in range(PanjangList(list1)):
         templist = TambahList(templist,list1[i])
     for i in range(PanjangList(list2)):
@@ -145,4 +167,3 @@ def split(list,delimeters):
     if word:
         templist1 = TambahList(templist1,word)
     return templist1
-
