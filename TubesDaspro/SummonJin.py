@@ -1,5 +1,5 @@
-def SummonJin(jin,N):
-    N += 1
+def SummonJin(jin):
+    N = jumlah_jin(jin)
     if N == 100 :
         print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu")
     else:
@@ -8,10 +8,9 @@ def SummonJin(jin,N):
                 \r  (1) Pengumpul - Bertugas mengumpulkan bahan bangunan
                 \r  (2) Pembangun - Bertugas membangun candi """)
         jenis = int(input("\nMasukkan nomor jenis jin yang ingin dipanggil: "))
-
-        if not (jenis == 1 or jenis == 2):
+        if (jenis != 1 and jenis != 2):
             print(f"\nTidak ada jenis jin bernomor “{jenis}” !")
-            SummonJin(jin,N)
+            SummonJin(jin)
         else:
             if jenis == 1 :
                 jenis_jin = "Pengumpul" 
@@ -52,14 +51,16 @@ def SummonJin(jin,N):
                     continue
                 else:
                     jin[i][0] = username
-                    break 
-            print(jin)
-            return (jin,N)
+                    jin[i][1] = password
+                    jin[i][2] = jenis_jin
+                    break
+            N += 1
 
-
-jin = [[0 for i in range (3)] for j in range (100)]
-jin[0][0]= "genie"
-N = 0
-
-x,y = SummonJin(jin,N)
-SummonJin(x , y)
+def jumlah_jin(user_file):
+    jumlah = 0
+    for i in range(3,103):
+        if(user_file[i][0] == 0):
+            continue
+        else:
+            jumlah += 1
+    return jumlah

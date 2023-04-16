@@ -1,43 +1,50 @@
-import BuildInFunction as Build
-import csv 
-import Load
-import DataBase as data
+import Login as Login
+import Logout as Logout
+import Load 
+import SummonJin as SummonJin
+import HilangkanJin as HilangkanJin
+import UbahJin as UbahJin
+import JinPembangun as JinPembangun
+import MainProgram as main
+import TempData as data
 
 def cekLoginState(function):
-    if(LoginState == True):
+    if(data.LoginState == True):
         function
     else:
         print("User Harus Login Terlebih dahulu")
         print('Ketik "Login" pada pilihan untuk login terlebih dahulu')
-        pilihanUser()
 
-def pilihanUser():
-    pilihan = input("Masukkan Pilihan Anda: ")
-    match pilihan:
-        case "Login":
-            data.login.UserLogin(LoginState)
-        case "Logout":
-            cekLoginState(data.logout.UserLogout(LoginState))
-        case "UbahJin":
-            cekLoginState(data.ubahjin.FuncUbahJin())
+def pilihanUser(LoginState,nama_user):
+    print("Masukkan Pilihan Anda: ")
+    print(nama_user)
+    pilihan = input(">>> ").upper()
+    if(pilihan == "LOGIN"):
+        Login.UserLogin(data.users,LoginState,nama_user)
+        pilihanUser(data.LoginState,data.nama_user)
+    elif(pilihan == "LOGOUT"):
+        cekLoginState(Logout.UserLogout(LoginState))
+        pilihanUser(data.LoginState,data.nama_user)
+    elif(pilihan == "SUMMONJIN"):
+        if(nama_user == "Bondowoso"):
+            cekLoginState(SummonJin.SummonJin(data.users))
+            pilihanUser(data.LoginState,data.nama_user)
+        else:
+            print("Hanya Bondowoso yang dapat Mengakses fitur SummonJin")
+            pilihanUser(data.LoginState,data.nama_user)
 
-with open('user.csv') as user_file:
-    user_reader = csv.reader(user_file, delimiter=";")
-    users = []
-    for row in user_reader:
-        users = Build.TambahList(users,row)
-with open('candi.csv') as candi_file:
-    candi_reader = csv.reader(candi_file, delimiter=";")
-    candi = []
-    for row in candi_reader:
-        candi = Build.TambahList(candi_file,row)
-with open('bahan_bangunan.csv') as bahan_file:
-    bahan_reader = csv.reader(bahan_file,delimiter=";")
-    bahan = []
-    for row in bahan_reader:
-        bahan = Build.TambahList(bahan_file,row)
+    elif(pilihan == "UBAHJIN" ):
+        if(nama_user == "Bondowoso"):
+            cekLoginState(UbahJin.FuncUbahJin(data.users))
+        else:
+            print("Hanya Bondowoso yang dapat Mengakses fitur UbahJin")
+    elif(pilihan == "USER"):
+        print(data.users)
+    elif(pilihan == "CANDI"):
+        print(data.candi)
+    else:
+        print("Stuuupid")
 
-LoginState = False
-pilihanUser()
+pilihanUser(data.LoginState,data.nama_user)
 
 
