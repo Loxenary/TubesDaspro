@@ -2,7 +2,7 @@ import BuildInFunction as Build
 def HapusJin (jinlist,candilist) :
     a=0
     username = str(input("Masukkan Username = "))
-    for i in range(0,103): 
+    for i in range(3,103): 
         if(username == jinlist[i][0]):
             a+=1
             indeks_jin = i
@@ -11,13 +11,12 @@ def HapusJin (jinlist,candilist) :
         while pilihan != 'Y' and pilihan != 'N': 
             pilihan = str(input("Masukkan input yang benar (Y/N) :  "))
         if(pilihan == 'Y'):
-            jinlist[indeks_jin][0] = 0
-            jinlist[indeks_jin][1] = 0
-            jinlist[indeks_jin][2] = 0
-            for i in range (0,1001):
+            for i in range(3):
+                jinlist[indeks_jin][i] = None
+            for i in range (0,101):
                 if (username == candilist[i][1]):
                     for j in range(5):
-                        candilist[i][j] = 0
+                        candilist[i][j] = None
             print("Jin telah berhasil dihapus dari alam ghaib")
         else:
             print("Masukkan input ulang")

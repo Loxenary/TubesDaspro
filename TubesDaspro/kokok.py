@@ -1,11 +1,9 @@
 import BuildInFunction as Build
+import sys
 def kokokayam (candilist) :
     a=0
-    candilist1 = [[ 0 for j in range (2)] for i in range (3)]
-    for i in range (3):
-        for j in range(2):
-            candilist1[i][j] = candilist[i][j]
-        if candilist1[i][j]==[0,0]:
+    for i in range (1,101):
+        if candilist[i][0] == None:
             continue
         else :
             a+=1
@@ -13,9 +11,8 @@ def kokokayam (candilist) :
     print("Jumlah Candi = ",a)
     if a==100:
         print("Yah, Bandung Bondowoso memenangkan permainan!")
+        sys.exit("Program Keluar")
     else :
         print("\n*Bandung Bondowoso angry noise* \nRoro Jonggrang dikutuk menjadi candi.")
+        sys.exit("Program Keluar")
 
-#contoh sementara
-cand = [['Jin1','cand1'],['Jin1' , 'cand2'], ['Jin1','cand'],[0,0]]
-print(kokokayam(cand))

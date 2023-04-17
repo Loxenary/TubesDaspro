@@ -1,4 +1,5 @@
 import BuildInFunction as Build
+import csv
 def FuncUbahJin(jinlist):
     username = input("masukkan username jin: ")
 
@@ -6,7 +7,7 @@ def FuncUbahJin(jinlist):
     tipe = 0 # tipe dari jin (Pengumpul / Pembangun)
     indexJin = 0 # indeks kolom dari tipe jin tersebut.
     
-    for i in range(3,Build.PanjangList(jinlist)): # Loop untuk mencocokkan username jin serta mencari indeksnya
+    for i in range(3,103): # Loop untuk mencocokkan username jin serta mencari indeksnya
         if(username == jinlist[i][0]):
             hasil = True
             tipe = jinlist[i][2]
@@ -15,7 +16,7 @@ def FuncUbahJin(jinlist):
             continue
     if(hasil == True):
         if(tipe == "Pengumpul"):
-            command = str(input('Jin ini bertipe pengumpul. yakin\ningin mengubah ke tipe "pembangun"\n(Y/N)? '))
+            command = str(input('Jin ini bertipe pengumpul. yakin\ningin mengubah ke tipe "Pembangun"\n(Y/N)? '))
             while command != 'Y' and command != 'N': #validasi Input
                 command = str(input("\nMasukkan input yang benar (Y/N) :  "))
             if(command == 'Y'):
@@ -24,20 +25,17 @@ def FuncUbahJin(jinlist):
             else:
                 print("Jin tidak jadi diubah")
         else:
-            command = str(input('Jin ini bertipe pembangun. yakin\ningin mengubah ke tipe "pengumpul"\n(Y/N)? '))
+            command = str(input('Jin ini bertipe pembangun. yakin\ningin mengubah ke tipe "Pengumpul"\n(Y/N)? '))
             while command != 'Y' and command != 'N': #validasi Input
                 command = str(input("\nMasukkan input yang benar (Y/N): "))
             if(command == 'Y'):
-                jinlist[indexJin][2] = "Pengubah"
+                jinlist[indexJin][2] = "Pengumpul"
                 print("Jin telah berhasil diubah")
+                print(jinlist)
             else:
                 print("Jin tidak jadi diubah")
     else:
         print("Tidak ada jin dengan username tersebut")
-    hasil = False
+        FuncUbahJin(jinlist)
 
-#contoh sementara
-k = [['username', 'password', 'role'], ['Bondowoso', 'cintaroro', 'bandung_bondowoso'], ['Roro', 'gasukabondo', 'roro_jonggrang'],['Jin1','IffritGanteng','Pengumpul'],['Jin2','iffritJelek','Pembangun']]
-FuncUbahJin(k)
-print("jin1:" + k[3][2])
-print("jin2:" + k[4][2])
+

@@ -1,15 +1,15 @@
 import BuildInFunction as Build
-def ubahJin(listjin,user):
-    if(user == "Bondowoso"):
-        countPengumpul = 0
-        countPembangun = 0
-        for i in range(1,Build.PanjangList(listjin)):
-            if(listjin[i][2] == "Pengumpul"):
-                countPengumpul += 1
-            else:
-                countPembangun += 1
-        print("Total Jin :",Build.PanjangList(listjin)-1)
-        print("Total Jin Pengumpul: 17")
-        print("Total Jin Pembangun: 33")
-    else:
-        return
+def AmbilLaporanJin(listjin):
+    jumlahJin = 0
+    jumlahJinPengumpul = 0
+    jumlahJinPembangun = 0
+    for i in range(3,103):
+        if(listjin[i][2] == "Pengumpul"):
+            jumlahJinPengumpul += 1
+            jumlahJin += 1
+        elif (listjin[i][2] == "Pembangun"):
+            jumlahJinPembangun += 1
+            jumlahJin += 1
+        else:
+            continue
+    

@@ -47,7 +47,7 @@ def SummonJin(jin):
             \rJin {username} berhasil dipanggil!\n""")
 
             for i in range (100):   
-                if jin[i][0] != 0 :
+                if jin[i][0] != None :
                     continue
                 else:
                     jin[i][0] = username
@@ -59,7 +59,7 @@ def SummonJin(jin):
 def jumlah_jin(user_file):
     jumlah = 0
     for i in range(3,103):
-        if(user_file[i][0] == 0):
+        if(user_file[i][0] == None):
             continue
         else:
             jumlah += 1

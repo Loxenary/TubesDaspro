@@ -1,35 +1,31 @@
 import BuildInFunction as build
-import bahan as bah
-candi_terbangun = 0
-list_candi=[[0 for j in range(5)]for i in range(1001)]
-def bangun(candi_terbangun):
+
+def bangun(list_candi, bahan, jin):
     hasil1 = False
     hasil2 = False
     hasil3 = False
-    if build.SearchRandomNumber(1,5,218412)<=bah.pasir:
+    Pasir = build.SearchRandomNumber(1,5,218412)
+    Batu = build.SearchRandomNumber(1,5,321453)
+    Air = build.SearchRandomNumber(1,5,423121)
+    if Pasir <= int(bahan[1][2]):
         hasil1 = True
-        pasir_dipakai = build.SearchRandomNumber(1,5,21842)
-        bah.pasir=bah.pasir-pasir_dipakai
-    if build.SearchRandomNumber(1,5,321453)<=bah.batu:
+        bahan[1][2] = str(int(bahan[1][2] - Pasir))
+    if build.SearchRandomNumber(1,5,321453)<=Batu:
         hasil2 = True
-        batu_dipakai = build.SearchRandomNumber(1,5,321453)
-        bah.batu = bah.batu-batu_dipakai
-    if build.SearchRandomNumber(1,5,423121)<=bah.air:
+        bahan[2][2] = str(int(bahan[2][2] - Batu))
+    if build.SearchRandomNumber(1,5,423121)<=Air:
         hasil3 = True
-        air_dipakai = build.SearchRandomNumber(1,5,423121)
-        bah.air = bah.air-air_dipakai
+        bahan[2][3] = str(int(bahan[3][2] - Air))
     if hasil1==hasil2==hasil3==True:
         print("Candi berhasil dibangun")
-        for i in range(0,1001):
+        for i in range(1,101):
             if list_candi[i][0]!=0:
                 continue
             else:
-                list_candi[i]=[i+1,'jin',pasir_dipakai,batu_dipakai,air_dipakai]
+                list_candi[i]=[i+1,jin,Pasir,Batu,Air]
                 break    
-        for i in range(1,1001):
-            if list_candi[i][1]!=0:
-                candi_terbangun+=1  
-        sisa_candi = 99-candi_terbangun
+
+        sisa_candi = 100-jumlah_candi(list_candi)
         if sisa_candi>0:
             print('Sisa candi yang perlu dibangun : ', sisa_candi)
         elif sisa_candi<=0:
@@ -38,10 +34,10 @@ def bangun(candi_terbangun):
     elif hasil1==False or hasil2==False or hasil3==False:
         print('Bahan bangunan tidak mencukupi.')
         print('Candi tidak bisa dibangun!')
-bangun(candi_terbangun)
-bangun(candi_terbangun)
-bangun(candi_terbangun)
-bangun(candi_terbangun)
-bangun(candi_terbangun)
-bangun(candi_terbangun)
-print(list_candi)
+
+def jumlah_candi (list_candi):
+    jumlah = 0
+    for i in range(1,101):
+        if(list_candi[i][0] == None):
+            jumlah += 1
+    return jumlah

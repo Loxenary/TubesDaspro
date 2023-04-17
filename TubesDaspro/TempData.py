@@ -1,10 +1,11 @@
 import Load as load
 LoginState = False
 nama_user = ""
+role_user = ""
 
-users = [[0 for j in range(3)]for i in range(103)]
-bahan = [[0 for j in range(3)]for i in range(1001)]
-candi = [[0 for j in range(5)]for i in range(1001)]
+users = [[None for j in range(3)]for i in range(103)]
+bahan = [[None for j in range(3)]for i in range(4)]
+candi = [[None for j in range(5)]for i in range(101)]
 
 def perhitungan(csvFile,list):
     i = 0
