@@ -7,12 +7,13 @@ def SummonJin(jin):
 
                 \r  (1) Pengumpul - Bertugas mengumpulkan bahan bangunan
                 \r  (2) Pembangun - Bertugas membangun candi """)
-        jenis = int(input("\nMasukkan nomor jenis jin yang ingin dipanggil: "))
-        if (jenis != 1 and jenis != 2):
+        jenis = str(input("\nMasukkan nomor jenis jin yang ingin dipanggil: "))
+
+        if (jenis != '1' and jenis != '2'):
             print(f"\nTidak ada jenis jin bernomor “{jenis}” !")
             SummonJin(jin)
         else:
-            if jenis == 1 :
+            if jenis == '1' :
                 jenis_jin = "Pengumpul" 
             else:
                 jenis_jin = "Pembangun"

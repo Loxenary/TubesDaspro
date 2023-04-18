@@ -12,8 +12,8 @@ def AmbilLaporanJin(listjin,candilist,bahanlist):
         elif (listjin[i][2] == "Pembangun"):
             jumlahJinPembangun += 1
             jumlahJin += 1
-            jinPalingRajin = jinTerRajin(listjin[i][2],candilist,jinPalingRajin)
-            jinPalingMalas = jinTerMalas(listjin[i][2],candilist,jinPalingMalas)
+            jinPalingRajin = jinTerRajin(listjin[i][0],candilist,jinPalingRajin)
+            jinPalingMalas = jinTerMalas(listjin[i][0],candilist,jinPalingMalas)
         else:
             continue
     
@@ -45,7 +45,8 @@ def jinTerRajin(jin,candilist,jinPalingRajin):
 
 
 def jinTerMalas(jin,candilist,jinPalingMalas):
-    PalingMalas = jumlahCandi(jinPalingMalas,candilist) 
+    PalingMalas = jumlahCandi(jinPalingMalas,candilist)
+ 
     if(jumlahCandi(jin,candilist) < PalingMalas):
         return jin
     elif(jumlahCandi(jin,candilist) == PalingMalas):

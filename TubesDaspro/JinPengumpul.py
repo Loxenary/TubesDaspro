@@ -8,3 +8,4 @@ def JinPengumpul (bahan_bangunan):
     bahan_bangunan[1][2] = str(int(bahan_bangunan[1][2]) + pasir)
     bahan_bangunan[2][2] = str(int(bahan_bangunan[1][2]) + batu)
     bahan_bangunan[3][2] = str(int(bahan_bangunan[1][2]) + air)
+

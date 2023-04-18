@@ -3,74 +3,78 @@ import BuildInFunction as Build
 def Help(LoginState,Role):
     if LoginState == False :
         print(f"""
-        \r>>> help
         \r=========== HELP ===========
         \r1. login
             \r  Untuk masuk menggunakan akun
         \r2. exit
             \r Untuk keluar dari program dan kembali ke terminal
-        \r============================""")
+        \r============================
+        """)
     else:
         if Role == "bandung_bondowoso":
             print(f"""
             \r=========== HELP ===========
-            \r1. Logout
-                \r  Untuk keluar dari akun yang digunakan sekarang
-            \r2. SummonJin
+            \r1. logout
+            \r   Untuk keluar dari akun yang digunakan sekarang
+            \r2. summonjin
                 \r  Untuk memanggil jin
-            \r3. HilangkanJin
+            \r3. hilangkanjin
                 \r Untuk menghilangkan jin
-            \r4. UbahJin
+            \r4. ubahjin
                 \r Untuk Mengubah Role Jin dari Pengumpul ke Pembangun dan sebaliknya
-            \r5. BatchKumpul
+            \r5. batchkumpul
                 \r Untuk melakukan pengumpulan bahan dengan banyak jin
-            \r6. BatchBangun
+            \r6. batchbangun
                 \r Untuk melakukan pembangunan jin dengan banyak jin 
-            \r7. AmbilLaporanJin
+            \r7. laporanjin
                 \r Untuk mengambil Laporan dari seluruh Jin yang sudah disummon
-            \r8. AmbilLaporanCandi
+            \r8. laporancandi
                 \r Untuk mengambil keseluruhan data dari candi yang sudah dibangun
-            \r9. Save
+            \r9. save
                 \r Untuk saving data temporary ke csv file
-            \r10. Exit
+            \r10. exit
                 \r Untuk exit dari Permainan
-            \r============================""")
+            \r============================
+            """)
         elif Role == "roro_jonggrang" :
             print(f"""
             \r=========== HELP ===========
-            \r1. Logout
+            \r1. logout
                 \r  Untuk keluar dari akun yang digunakan sekarang
-            \r2. HancurkanCandi
+            \r2. Hancurkancandi
                 \r  Untuk menghancurkan candi yang tersedia
-            \r3. AyamBerkokok
-                \r Untuk menyelesaikan permainan dengan memalsukan pagi hari """)
+            \r3. ayamberkokok
+                \r Untuk menyelesaikan permainan dengan memalsukan pagi hari 
+            \r4. save
+                \r Untuk saving data temporary ke csv file
+            \r5. exit
+                \r Untuk exit dari Permainan
+            \r============================
+            """)
+            
         elif Role == "Pengumpul":
             print(f"""
             \r=========== HELP ===========
-            \r1. Logout
+            \r1. logout
                 \r  Untuk keluar dari akun yang digunakan sekarang
-            \r2. JinPengumpul
+            \r2. kumpul
                 \r  Untuk mengumpulkan resource candi
-            \r3. Save
+            \r3. save
                 \r Untuk saving data temporary ke csv file
-            \r4. Exit
+            \r4. exit
                 \r Untuk exit dari Permainan
-            \r============================""")
+            \r============================
+            """)
         else:
             print(f"""
-            \r# Role: Jin Pembangun
-            \r>>> help
             \r=========== HELP ===========
-            \r1. Logout
+            \r1. logout
                 \r  Untuk keluar dari akun yang digunakan sekarang
-            \r2. JinPembangun
-            \r3. Save
+            \r2. bangun
+                \r Untuk membangun suatu candi
+            \r3. save
                 \r Untuk saving data temporary ke csv file
-            \r4. Exit
+            \r4. exit
                 \r Untuk exit dari Permainan
-            \r============================""")
-        
-            
-LoginState = True
-Role = "Bandung Bondowoso"
-Help(LoginState,Role)
+            \r============================
+            """)

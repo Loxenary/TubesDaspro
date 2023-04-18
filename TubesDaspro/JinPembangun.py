@@ -7,19 +7,23 @@ def bangun(list_candi, bahan, jin):
     Pasir = build.SearchRandomNumber(1,5,218412)
     Batu = build.SearchRandomNumber(1,5,321453)
     Air = build.SearchRandomNumber(1,5,423121)
+    print(Pasir)
+    print(Batu)
+    print(Air)
     if Pasir <= int(bahan[1][2]):
         hasil1 = True
-        bahan[1][2] = str(int(bahan[1][2] - Pasir))
-    if build.SearchRandomNumber(1,5,321453)<=Batu:
+        bahan[1][2] = str(int(bahan[1][2]) - Pasir)
+    if Batu <= int(bahan[2][2]):
         hasil2 = True
-        bahan[2][2] = str(int(bahan[2][2] - Batu))
-    if build.SearchRandomNumber(1,5,423121)<=Air:
+        bahan[2][2] = str(int(bahan[2][2]) - Batu)
+    if Air <= int(bahan[3][2]):
         hasil3 = True
-        bahan[2][3] = str(int(bahan[3][2] - Air))
+        bahan[3][2] = str(int(bahan[3][2]) - Air)
+        
     if hasil1==hasil2==hasil3==True:
         print("Candi berhasil dibangun")
         for i in range(1,101):
-            if list_candi[i][0]!=0:
+            if list_candi[i][0]!=None:
                 continue
             else:
                 list_candi[i]=[i+1,jin,Pasir,Batu,Air]
@@ -38,6 +42,6 @@ def bangun(list_candi, bahan, jin):
 def jumlah_candi (list_candi):
     jumlah = 0
     for i in range(1,101):
-        if(list_candi[i][0] == None):
+        if(list_candi[i][0] != None):
             jumlah += 1
     return jumlah

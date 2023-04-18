@@ -15,61 +15,86 @@ import kokok as AyamBerkokok
 import save as Saving
 import Help as helpPlayer
 import exit as ExitGame
+import os 
+import time
 
-def cekLoginState(function):
+def cekLoginState():
+    print("e")
+    os.system('cls')
+    time.sleep(0.25)
     if(data.LoginState == True):
-        function
+        return True
     else:
         print("User Harus Login Terlebih dahulu")
-        print('Ketik "Login" pada pilihan untuk login terlebih dahulu')
-def cekAksesUser(function,user_role,functionName):
+        print('Ketik "login" pada pilihan untuk login terlebih dahulu\n')
+        return False
+def cekAksesUser(user_role,functionName):
     if(data.role_user == user_role):
-        function
+        return True
     else:
         if(user_role == "bandung_bondowoso" or user_role == "roro_jonggrang"):
             print(f"Hanya {user_role} yang dapat Mengakses fitur {functionName}")
+            return False
         else:
             print(f"Hanya Jin dengan role {user_role} yang dapat Mengakses fitur {functionName}")
-
+            return False
 def pilihanUser(LoginState,role_user):
-    helpPlayer.Help(data.LoginState,data.role_user)
-    print("Masukkan Pilihan Anda: ")
+    print("\nMasukkan Pilihan Anda: ")
     pilihan = str(input(">>> "))
-    pilihan = Build.uppercase(pilihan)
-    if(pilihan == "LOGIN"):
-        Login.UserLogin(data.users,LoginState,role_user)        
-    elif(pilihan == "LOGOUT"):
-        cekLoginState(Logout.UserLogout(LoginState))
-    elif(pilihan == "SUMMONJIN"):
-        cekLoginState(cekAksesUser(SummonJin.SummonJin(data.users),"bandung_bondowoso","SummonJin"))  
-    elif(pilihan == "UBAHJIN" ):
-        cekLoginState(cekAksesUser(UbahJin.FuncUbahJin(data.users),"bandung_bondowoso","UbahJin"))    
-    elif(pilihan == "HAPUSJIN"):
-        cekLoginState(cekAksesUser(Hapusjin.HapusJin(data.users),"bandung_bondowoso","HapusJin"))
-    elif(pilihan == "JINPENGUMPUL"):
-        cekLoginState(cekAksesUser(pengumpul.JinPengumpul(data.bahan),"Pengumpul","JinPengumpul"))
-    elif(pilihan == "JINPEMBANGUN"):
-        cekLoginState(cekAksesUser(pembangun.bangun(data.candi,data.bahan,data.nama_user),"Pembangun","JinPembangun"))
-    elif(pilihan == "BATCHBANGUN"):
-        cekLoginState(cekAksesUser(Batch.batch("BatchBangun",data.users,data.candi,data.bahan),"bandung_bondowoso","BatchBangun"))
-    elif(pilihan == "BATCHKUMPUL"):
-        cekLoginState(cekAksesUser(Batch.batch("BatchKumpul",data.users,data.candi,data.bahan),"bandung_bondowoso","BatchKumpul"))
-    elif(pilihan == "HANCURKANCANDI"):
-        cekLoginState(cekAksesUser(CandiHancur.HancurkanCandi(data.candi),"roro_jonggrang","HancurkanCandi"))
-    elif(pilihan == "AMBILLAPORANJIN"):
-        cekLoginState(cekAksesUser(laporanJin.AmbilLaporanJin(data.users),"bandung_bondowoso","AmbilLaporanJin"))
-    elif(pilihan == "AMBILLAPORANCANDI"):
-        cekLoginState(cekAksesUser(laporanCandi.laporancandi(data.candi),"bandung_bondowoso","AmbilLaporanCandi"))
-    elif(pilihan == "AYAMBERKOKOK"):
-        cekLoginState(cekAksesUser(AyamBerkokok.kokokayam(data.candi),"roro_jonggrang","AyamBerkokok"))
-    elif(pilihan == "SAVE"):
-        cekLoginState(Saving.save(data.users,data.candi,data.bahan))
-    elif(pilihan == "EXIT"):
+    os.system("cls")
+    if(pilihan == "login" and LoginState == False):
+        Login.UserLogin(data.users)        
+    elif(pilihan == "login" and LoginState == True):
+        print('Anda sudah Login, pilih command "logout"\nuntuk ganti akun')
+    elif(pilihan == "logout" and cekLoginState() == True):
+        Logout.UserLogout()
+    elif(pilihan == "summonjin" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan)):
+            SummonJin.SummonJin(data.users) 
+    elif(pilihan == "ubahjin" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan) == True):
+            UbahJin.FuncUbahJin(data.users) 
+    elif(pilihan == "hapusjin" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan)):
+            Hapusjin.HapusJin(data.users,data.candi)
+    elif(pilihan == "kumpul" and cekLoginState() == True):
+        if(cekAksesUser("Pengumpul",pilihan)):
+            pengumpul.JinPengumpul(data.bahan)
+    elif(pilihan == "bangun" and cekLoginState() == True):
+        if(cekAksesUser("Pembangun",pilihan)):
+            pembangun.bangun(data.candi,data.bahan,data.nama_user)
+    elif(pilihan == "batchkumpul" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan)):
+            Batch.batch("BatchKumpul",data.users,data.candi,data.bahan)
+    elif(pilihan == "batchbangun" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan)):
+            Batch.batch("BatchBangun",data.users,data.candi,data.bahan)
+    elif(pilihan == "laporanjin" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan) == True):
+            laporanJin.AmbilLaporanJin(data.users,data.candi,data.bahan) 
+    elif(pilihan == "laporancandi" and cekLoginState() == True):
+        if(cekAksesUser("bandung_bondowoso",pilihan) == True):
+             laporanCandi.laporancandi(data.candi)
+    elif(pilihan == "hancurkancandi" and cekLoginState() == True):
+        if(cekAksesUser("roro_jonggrang",pilihan)):
+            CandiHancur.HancurkanCandi(data.candi)
+    elif(pilihan == "ayamberkokok" and cekLoginState() == True):
+        if(cekAksesUser("roro_jonggrang",pilihan)):
+            AyamBerkokok.kokokayam(data.candi)   
+    elif(pilihan == "save" and cekLoginState() == True):
+        Saving.save(data.users,data.candi,data.bahan)
+    elif(pilihan == "help"):
+        helpPlayer.Help(LoginState,role_user)
+    elif(pilihan == "exit"):
         ExitGame.exit()
+    elif(pilihan == "P"):
+        print(data.users)
+    elif(pilihan == "C"):
+        print(data.candi)
+    elif(pilihan == "B"):
+        print(data.bahan)
     else:
         print("pilihan tidak tersedia")
     pilihanUser(data.LoginState,data.role_user)
 
 pilihanUser(data.LoginState,data.role_user)
-
-

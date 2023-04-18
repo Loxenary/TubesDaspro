@@ -13,7 +13,8 @@ def perhitungan(csvFile,list):
     word = ""
     for char in csvFile:
         if(char == '\n'):
-            list[i][j] = word
+            if(word != ''):
+                list[i][j] = word
             i += 1
             j = 0
             word = ''
@@ -33,5 +34,4 @@ with open(f'{load.folder}/bahan_bangunan.csv') as bahan_file:
     bahan_reader = bahan_file.read()
     perhitungan(bahan_reader,bahan)
 
-print(users)
 
