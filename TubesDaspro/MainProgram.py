@@ -17,7 +17,6 @@ import Help as helpPlayer
 import exit as ExitGame
 import os 
 import time
-
 def cekLoginState():
     print("e")
     os.system('cls')
@@ -40,6 +39,7 @@ def cekAksesUser(user_role,functionName):
             return False
 def pilihanUser(LoginState,role_user):
     print("\nMasukkan Pilihan Anda: ")
+    print(data.role_user)
     pilihan = str(input(">>> "))
     os.system("cls")
     if(pilihan == "login" and LoginState == False):
