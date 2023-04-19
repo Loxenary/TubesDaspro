@@ -1,8 +1,8 @@
 import BuildInFunction as Build
 import TempData as data
 def UserLogin(userlist):
-    username = str(input("username: "))
-    password = str(input("password: "))
+    username = str(input("username: ")) # username (dari file user.csv)
+    password = str(input("password: ")) # password (dari file)
     hasil1 = False
     hasil2 = False
     for i in range(1,103):
