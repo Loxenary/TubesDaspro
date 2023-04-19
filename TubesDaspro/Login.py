@@ -1,5 +1,6 @@
 import BuildInFunction as Build
 import TempData as data
+<<<<<<< HEAD
 def UserLogin(userlist): #userlist adalah parameter yang akan di assign dengan list users
     
     # input-field
@@ -11,6 +12,13 @@ def UserLogin(userlist): #userlist adalah parameter yang akan di assign dengan l
     hasil2 = False # variable dummy untuk mengecek apakah password benar
 
     # Username-Password Validating
+=======
+def UserLogin(userlist):
+    username = str(input("username: "))
+    password = str(input("password: "))
+    hasil1 = False
+    hasil2 = False
+>>>>>>> parent of 3ce5b4a (Update lagi)
     for i in range(1,103):
         if(username == userlist[i][0]): # userlist[i][0] mengacu pada kolom username pada user.csv
                 hasil1 = True 

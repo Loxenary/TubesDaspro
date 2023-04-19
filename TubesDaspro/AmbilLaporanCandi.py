@@ -18,7 +18,7 @@ def laporancandi(list_candi):
             if max<harga_candi[i]:
                 max=harga_candi[i]
                 idmax = i
-        for i in range(101):
+        for i in range(1001):
             if min>harga_candi[i] and harga_candi[i]!=0:
                 min=harga_candi[i]
                 idmin = i
