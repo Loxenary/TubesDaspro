@@ -1,32 +1,64 @@
 import os
 import TempData as Data
-def save(user_list,candi_list,bahan_list):
-    folder = input('Masukkan nama folder:')
-    if os.path.exists('/save')==False:
-        os.makedirs('/save')
-        os.makedirs(f'/save/{folder}')
-    elif os.path.exists(f'/save/{folder}')==True:
-        CsvSave(folder,user_list,candi_list,bahan_list)
-    else:
-        os.makedirs(f'/save/{folder}')
-        CsvSave(folder,user_list,candi_list,bahan_list)
+def save():
+    path = Data.current_csv_path
+    parentFolder = "save"
+    userFile_read = open(f'{path}/user.csv','rb')
+    candiFile_read = open(f'{path}/candi.csv','rb')
+    bahanFile_read = open(f'{path}/bahan_bangunan.csv','rb')
+    folder_name = str(input("Masukkan nama folder: "))
+    folder_path = os.path.join(parentFolder,folder_name)
+    if(os.path.exists("save") == False): # parent save/ belum ada
+        os.makedirs(folder_path)
+        userFile_write = open(f'{folder_path}/user.csv',"wb")
+        userFile_write.write(userFile_read.read())
+        candiFile_write = open(f'{folder_path}/candi.csv',"wb")
+        candiFile_write.write(candiFile_read.read())
+        bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
+        bahanFile_write.write(bahanFile_read.read())
+        override(folder_path)
+        print("\nSaving...")
+        print(f"Membuat folder {parentFolder}")
+        print(f"Membuat folder {folder_path}")
+        print(f"\nBerhasil menyimpan data di folder {folder_path}")
 
-def CsvSave(folder,user_list,candi_list,bahan_list):
-    with open(f'/save/{folder}/user.csv','w') as users:
-        for j in range(103):
-            for i in range(3):
-                if user_list[j][i] == None:
-                    continue
+    else: # parent save/ sudah ada
+        if(os.path.exists(folder_name) == True): # folder sudah ada
+            override(folder_path)
+            print("\nSaving...")
+            print(f"\nBerhasil menyimpan data di folder {folder_path}")
+        else: # folder belum ada
+            os.makedirs(folder_path,exist_ok=True)
+            userFile_write = open(f'{folder_path}/user.csv',"wb")
+            userFile_write.write(userFile_read.read())
+            candiFile_write = open(f'{folder_path}/candi.csv',"wb")
+            candiFile_write.write(candiFile_read.read())
+            bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
+            bahanFile_write.write(bahanFile_read.read())
+            override(folder_path)
+            print("\nSaving...")
+            print(f"\nBerhasil menyimpan data di folder {folder_path}")
+
+
+def override(path):
+    users = Data.users
+    user = open(f'{path}/user.csv','w')
+    writeFile(user,users,103,3)
+    candi = Data.candi
+    candif = open(f'{path}/candi.csv','w')
+    writeFile(candif,candi,101,5)
+    bahan = Data.bahan
+    bahanf = open(f'{path}/bahan_bangunan.csv',"w")
+    writeFile(bahanf,bahan,4,3)
+    
+def writeFile(file,list,PanjangBaris,PanjangKolom):
+    for i in range(PanjangBaris):
+        if(list[i][0] == None):
+            file.write("\n")
+        else:
+            for j in range(PanjangKolom):
+                file.write(str(list[i][j]))
+                if(j != PanjangKolom-1):
+                    file.write(";")
                 else:
-                    users.write("%s,"%user_list[j][i])
-    with open(f'/save/{folder}/candi.csv','w') as candi:
-        for j in range(101):
-            for i in range(5):
-                if candi_list[j][i] == None:
-                    continue
-                else:
-                    candi.write("%s,"%candi_list[j][i])
-    with open(f'/save/{folder}/bahan.csv','w') as bahan:
-        for j in range(4):
-            for i in range(3):
-                bahan.write("%s,"%bahan_list[j][i])
+                    file.write("\n")

@@ -104,7 +104,7 @@ def pilihanUser(LoginState,role_user): # menerima LoginState yaitu keadaan login
             AyamBerkokok.kokokayam(data.candi)
     # fungsi save dapat dipanggil oleh siapa saja dengan syarat user sudah login
     elif(pilihan == "save" and cekLoginState() == True):
-        Saving.save(data.users,data.candi,data.bahan)
+        Saving.save()
     # fungsi berikut dapat dipanggil oelh siapa saja tanpa syarat
     elif(pilihan == "help"):
         helpPlayer.Help(LoginState,role_user)

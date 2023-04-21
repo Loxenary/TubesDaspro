@@ -2,39 +2,25 @@ import time
 import os
 
 def SearchRandomSeed(k): # built-in random generator # k untuk biar lebih random aja
-    now = time.perf_counter()
-    ProcessId= os.getpid()
-    seed = int(now * ProcessId * k)
+    now = time.perf_counter() # time.perf_counter akan menghasilkan angka random dari perhitungan waktu eksekusi performance benchmark 
+    ProcessId= os.getpid() # os.getpid akan menghasilkan angka random dari process ID (PID) dari current process
+    seed = int(now * ProcessId * k) # variable k akan menyebabkan hasil seed nya berbeda jika program dijalankan berulang-ulang dalam waktu singkat
 
     return seed
     
 def SearchRandomNumber(minimum,maximum,k): # k agar nilai yang dihasilkan lebih random
-    seed = SearchRandomSeed(k)
-    a = 1662533
+    seed = SearchRandomSeed(k) # seed agar hasil nya makin random, k adalah variable yang akan membuat misalnya ketika dibutuhkan 3 kali pencarian random number, hasil ketiganya tidak sama
+    a = 1662533 
     c = 1283463648
     m = 2**32
-    r = (a * seed + c) % m
-    hasil = minimum + int((maximum - minimum + 1) * (r / (m + 1)))
+    r = (a * seed + c) % m # algoritma linear
+    hasil = minimum + int((maximum - minimum + 1) * (r / (m + 1))) # perhitungan agar hasilnya tidak kurang dan lebih dari minimum dan maximum, serta agar hasilnya selalu integer
 
-    return hasil
+    return hasil 
 
-def uppercase(string):
-    lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    uppercase_string = ""
-    for i in range(len(string)):
-       for j in range(26):
-            if(string[i] == lowercase[j]):
-                uppercase_string += uppercase[j]
-                break
-            if(j == 25):
-                uppercase_string += string[i]
-
-
-    return uppercase_string
 
 def Diffrence(Inisial,Final): # untuk menghitung butuh berapa agar Inisial mencapai Final
-    if(Inisial < Final):
+    if(Inisial < Final): 
         return Final - Inisial
     else:
         return 0
