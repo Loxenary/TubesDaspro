@@ -19,8 +19,21 @@ def HancurkanCandi(candi):
                 no = i
                 break
         if cek == False : #jika kondisi false maka akan langsung keluar dengan output tidak ada candi dengan id tersebut
-            print("Tidak ada candi dengan ID tersebut.") 
-            HancurkanCandi(candi) #dan user akan diminta input ulang ID 
+            print("Tidak ada candi dengan ID tersebut.")
+            print(""" 
+                  \rApakah anda ingin memasukkan ID lagi atau kembali ke menu utama?
+                  \rKetik 1 untuk masukkan ID lagi
+                  \rKetik 2 untuk ke menu utama""") 
+            user = int(input("Ketik pilihan anda = "))
+            while user != 1 and user != 2 :
+                print("Masukkan anda salah, ketik yang benar!")
+                user = int(input("Ketik pilihan anda = "))
+            
+            if user == 1 :#user memilih masukkan ID lagi
+                HancurkanCandi(candi) #user akan diminta input ulang ID 
+            else : #user memilih kembali ke menu utama
+                return 
+
         else: #jika True maka akan masuk kondisi dimana ada candi dengan id yang dimaksud user
             pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
             #pilihan adalah variabel yang diinput user yang meminta apakah candi akan dihapus atau tidak
