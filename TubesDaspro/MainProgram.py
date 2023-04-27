@@ -1,7 +1,6 @@
 # import semua module untuk dipanggil fungsinya
 import Login as Login
 import Logout as Logout
-import BuildInFunction as Build
 import SummonJin as SummonJin
 import Hapusjin as Hapusjin
 import UbahJin as UbahJin
@@ -110,14 +109,9 @@ def pilihanUser(LoginState,role_user): # menerima LoginState yaitu keadaan login
         helpPlayer.Help(LoginState,role_user)
     elif(pilihan == "exit"):
         ExitGame.exit()
-    elif(pilihan == "P"):
-        print(data.users)
-    elif(pilihan == "C"):
-        print(data.candi)
-    elif(pilihan == "B"):
-        print(data.bahan)
     else: # jika user memasukkan input selain fungsi fungsi diatas
         print("pilihan tidak tersedia")
+        print('Ketik "help" untuk melihat command yang dapat dilihat')
     pilihanUser(data.LoginState,data.role_user) # untuk melakukan loop tiap kali user selesai menggunakan suatu fitur
 
 pilihanUser(data.LoginState,data.role_user) # digunakan untuk memulai permainan dengan input user

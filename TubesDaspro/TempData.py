@@ -22,7 +22,7 @@ def perhitungan(csvFile,list): # parameter csvfile adalah file csv yang akan dim
     '''
     for char in csvFile: 
         if(char == '\n'): 
-            if(word != ''):
+            if(word != ''): # menghindari agar jika hanya terdapat empty space, tidak akan dimasukan ke list
                 list[i][j] = word
             i += 1
             j = 0
@@ -33,17 +33,21 @@ def perhitungan(csvFile,list): # parameter csvfile adalah file csv yang akan dim
             list[i][j] = word
             word = ''
             j += 1
+    if(word != ''): # berfungsi untuk kata paling akhir dalam file csv
+        list[i][j] = word
 
 with open(f'{current_csv_path}/user.csv') as user_file: # membuka user.csv dan assign ke user_file
     user_reader = user_file.read() # lalu user_file di read dan me-assignnya ke user_reader
     perhitungan(user_reader,users) # lalu function perhitungan dijalankan untuk memasukkan nya ke list users
-    
+    user_file.close()
+
 with open(f'{current_csv_path}/candi.csv') as candi_file: # membuka candi.csv dan assign ke candi_file
     candi_reader = candi_file.read() # lalu candi_file di read dan me-assignnya ke candi_reader
     perhitungan(candi_reader,candi) # lalu function perhitungan dijalan kan untu me-assign nya ke list candi
+    candi_file.close()
 
 with open(f'{current_csv_path}/bahan_bangunan.csv') as bahan_file: # membuka bahan_bangunan.csv dan assign ke bahan_file
     bahan_reader = bahan_file.read() # lalu user_file di read dan me-assignnya ke bahan_reader
     perhitungan(bahan_reader,bahan) # lalu function perhitungan dijalankan untuk me-assign nya ke list bahan
-
+    bahan_file.close()
 

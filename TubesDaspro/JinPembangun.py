@@ -7,9 +7,7 @@ def bangun(list_candi, bahan, jin):
     Pasir = build.SearchRandomNumber(1,5,218412)
     Batu = build.SearchRandomNumber(1,5,321453)
     Air = build.SearchRandomNumber(1,5,423121)
-    print(Pasir)
-    print(Batu)
-    print(Air)
+
     if Pasir <= int(bahan[1][2]):
         hasil1 = True
         bahan[1][2] = str(int(bahan[1][2]) - Pasir)
@@ -26,7 +24,7 @@ def bangun(list_candi, bahan, jin):
             if list_candi[i][0]!=None:
                 continue
             else:
-                list_candi[i]=[i+1,jin,Pasir,Batu,Air]
+                list_candi[i]=[i,jin,Pasir,Batu,Air]
                 break    
 
         sisa_candi = 100-jumlah_candi(list_candi)

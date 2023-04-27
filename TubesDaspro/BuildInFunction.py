@@ -10,12 +10,16 @@ def SearchRandomSeed(k): # built-in random generator # k untuk biar lebih random
     
 def SearchRandomNumber(minimum,maximum,k): # k agar nilai yang dihasilkan lebih random
     seed = SearchRandomSeed(k) # seed agar hasil nya makin random, k adalah variable yang akan membuat misalnya ketika dibutuhkan 3 kali pencarian random number, hasil ketiganya tidak sama
-    a = 1662533 
-    c = 1283463648
-    m = 2**32
-    r = (a * seed + c) % m # algoritma linear
+    a = 1662533 # angka random1
+    c = 1283463648 # angka random2
+    m = 2**32 # suatu nilai bit yang sangat besar
+    r = (a * seed + c) % m # algoritma linear, dengan adanya seed hasilnya akan berbeda beda tiap perhitungan
     hasil = minimum + int((maximum - minimum + 1) * (r / (m + 1))) # perhitungan agar hasilnya tidak kurang dan lebih dari minimum dan maximum, serta agar hasilnya selalu integer
-
+    '''
+    Algoritma : minimuma adalah  nilai ter-rendah, maximum - minimum + 1 hanyalah perhitungan untuk mencari selisih + 1 dari maximum dan minimum
+    nilai tersebut kemudian akan dikalikan dengan (r yang dibagi dengan m + 1), ini akan menghasilkan nilai float pada range
+    antara minimum dan maximum yang kemudian akan di bulatkan.
+    '''
     return hasil 
 
 

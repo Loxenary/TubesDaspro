@@ -8,15 +8,15 @@ def save():
     bahanFile_read = open(f'{path}/bahan_bangunan.csv','rb')
     folder_name = str(input("Masukkan nama folder: "))
     folder_path = os.path.join(parentFolder,folder_name)
+
+    userFile_write = open(f'{folder_path}/user.csv',"wb")
+    userFile_write.write(userFile_read.read())
+    candiFile_write = open(f'{folder_path}/candi.csv',"wb")
+    candiFile_write.write(candiFile_read.read())
+    bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
+    bahanFile_write.write(bahanFile_read.read())    
     if(os.path.exists("save") == False): # parent save/ belum ada
         os.makedirs(folder_path)
-        userFile_write = open(f'{folder_path}/user.csv',"wb")
-        userFile_write.write(userFile_read.read())
-        candiFile_write = open(f'{folder_path}/candi.csv',"wb")
-        candiFile_write.write(candiFile_read.read())
-        bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
-        bahanFile_write.write(bahanFile_read.read())
-        override(folder_path)
         print("\nSaving...")
         print(f"Membuat folder {parentFolder}")
         print(f"Membuat folder {folder_path}")
@@ -24,21 +24,17 @@ def save():
 
     else: # parent save/ sudah ada
         if(os.path.exists(folder_name) == True): # folder sudah ada
-            override(folder_path)
             print("\nSaving...")
-            print(f"\nBerhasil menyimpan data di folder {folder_path}")
-        else: # folder belum ada
+            print(f"\nBerhasil menyimpan data di folder {folder_path}!")
+        else: # parent save sudah ada tapi folder belum ada
             os.makedirs(folder_path,exist_ok=True)
-            userFile_write = open(f'{folder_path}/user.csv',"wb")
-            userFile_write.write(userFile_read.read())
-            candiFile_write = open(f'{folder_path}/candi.csv',"wb")
-            candiFile_write.write(candiFile_read.read())
-            bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
-            bahanFile_write.write(bahanFile_read.read())
-            override(folder_path)
             print("\nSaving...")
-            print(f"\nBerhasil menyimpan data di folder {folder_path}")
+            print(f"\nBerhasil menyimpan data di folder {folder_path}!")
+            userFile_write.close()
 
+    candiFile_write.close()
+    bahanFile_write.close()
+    override(folder_path)
 
 def override(path):
     users = Data.users
@@ -53,12 +49,12 @@ def override(path):
     
 def writeFile(file,list,PanjangBaris,PanjangKolom):
     for i in range(PanjangBaris):
-        if(list[i][0] == None):
-            file.write("\n")
-        else:
+        if(list[i][0] != None):
             for j in range(PanjangKolom):
                 file.write(str(list[i][j]))
                 if(j != PanjangKolom-1):
                     file.write(";")
-                else:
-                    file.write("\n")
+            file.write("\n")
+        else:
+            file.write("\n")
+        

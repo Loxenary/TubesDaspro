@@ -1,39 +1,53 @@
-def AmbilLaporanJin(listjin,candilist,bahanlist): 
-    # listjin (list dari user dari index 3 - 103), candilist (list yang berisi candi yang sudah terbangun), bahanlist (list yang berisi bahan yang saat ini tersedia)
+def AmbilLaporanJin(userlist,candilist,bahanlist): 
+    # userlist (list dari user dari index 3 - 103), candilist (list yang berisi candi yang sudah terbangun), bahanlist (list yang berisi bahan yang saat ini tersedia)
     jumlahJin = 0 # variable jumlahjin yang ada saat ini
     jumlahJinPengumpul = 0 # variable yang berisi jumlahjin yang punya role Pengumpul
     jumlahJinPembangun = 0 # variable yang berisi jumlahjin yang punya role Pembangun
     jinPalingRajin = "-" # variable yang berisi nama jin paling banyak membuat candi (dengan urutan leksografis paling tinggi)
     jinPalingMalas = "-" # variable yang berisi nama jin paling sedikit membuat candi (dengan urutan leksofrafis paling tinggi)
-    for i in range(3,103): # loop untuk listjin, dimulai dari indeks 3 karena jin yang muncul baru dimulai pada indeks 3, diakhiri 103 karena jumlah jin maks adalah 100
-        if(listjin[i][2] == "Pengumpul"): 
+    inisialisasi = False
+    for i in range(3,103): # loop untuk userlist, dimulai dari indeks 3 karena jin yang muncul baru dimulai pada indeks 3, diakhiri 103 karena jumlah jin maks adalah 100
+        if(userlist[i][2] == "Pengumpul"): 
             jumlahJinPengumpul += 1 
             jumlahJin += 1
-            jinPalingRajin = jinTerRajin(listjin[i][0],candilist,jinPalingRajin) # jinPalingRajin tetap dipanggil karena ada kemungkinan jin yang sudah membuat candi diubah role nya
-            # jinPalingMalas tidak dipanggil karena hampir keseluruhan jinPengumpul tidak pernah membuat candi
-        elif (listjin[i][2] == "Pembangun"):
+
+            if(jumlahCandi(userlist[i][0], candilist) > 0): # karena ketika jin diubah, candinya tidak hilang, maka jinTersebut diasumsikan bisa menjadi jinPalingRajin dan jinPalingMalas.
+                # diasumsikan, jin baru akan dimasukkan hitungan jika pernah setidaknya sekali membuat candi, hal ini dikarenakan, kebanyakan dari jinPengumpul tidak mempunyai candi
+                if(inisialisasi == False): # jika terdapat jinPengumpul yang pernah membangun candi, dan dipanggil lebih dulu daripada jinPembangun
+                    jinPalingMalas = userlist[i][0]
+                    jinPalingRajin = userlist[i][0]
+                    inisialisasi = True
+
+                jinPalingRajin = jinTerRajin(userlist[i][0],candilist,jinPalingRajin) # jinPalingRajin dan jinPalingMalas tetap dipanggil karena ada kemungkinan jin yang sudah membuat candi, saat diubah role nya
+                jinPalingMalas = jinTerMalas(userlist[i][0],candilist,jinPalingMalas) 
+
+        elif (userlist[i][2] == "Pembangun"):
             jumlahJinPembangun += 1
             jumlahJin += 1
-            jinPalingRajin = jinTerRajin(listjin[i][0],candilist,jinPalingRajin) 
-            jinPalingMalas = jinTerMalas(listjin[i][0],candilist,jinPalingMalas)
-        else: # jika hasil list[i][2] == None atau tidak ada jin
+            
+            if(inisialisasi == False): # inisialisasi jinPalingRajin dan jinPalingMalas paling awal
+                jinPalingRajin = userlist[i][0]
+                jinPalingMalas =userlist[i][0]
+                inisialisasi = True
+
+            jinPalingRajin = jinTerRajin(userlist[i][0],candilist,jinPalingRajin) 
+            jinPalingMalas = jinTerMalas(userlist[i][0],candilist,jinPalingMalas)
+        else: # jika hasil userlist[i][2] == None atau tidak ada jin
             continue
         # jumlah jin ditambahkan dari 2 if statement karena akumulasi keduanya akan menghasilkan jumlah jin keseluruhan
     
-    # if statement dibawah hanya digunakan agar hasilnya menjadi "-" karena jika tidak ditemukan JinTerajin atau Termalas maka akan menghasilkan None
-    if(jinPalingRajin == None):
+    if(jumlahJinPembangun <= 1): # asumsi: jika hanya terdapat 0-1 jin pembangun, maka dianggap tidak ada yang paling rajin maupun malas 
+        jinPalingMalas = "-"
         jinPalingRajin = "-"
-        if(jinPalingMalas == None):
-            jinPalingMalas = "-"
     print(f'''
     \r> Total Jin : {jumlahJin}
     \r> Total Jin Pengumpul : {jumlahJinPengumpul}
     \r> Total Jin Pembangun : {jumlahJinPembangun}
     \r> Jin Terajin : {jinPalingRajin}
     \r> Jin Termalas : {jinPalingMalas}
-    \r> Jumlah Pasir : {bahanlist[1][2]}
-    \r> Jumlah Air : {bahanlist[3][2]}
-    \r> Jumlah Batu : {bahanlist[2][2]}''')
+    \r> Jumlah Pasir : {bahanlist[1][2]} unit
+    \r> Jumlah Air : {bahanlist[3][2]} unit
+    \r> Jumlah Batu : {bahanlist[2][2]} unit''')
     # bahanlist[1][2] adalah jumlah pasir yang tersedia saat ini
     # bahanlist[2][2] adalah jumlah Batu yang tersedia saat ini
     # bahanlist[3][2] adalah jumlah air yang tersedia saat ini
@@ -60,8 +74,12 @@ def jinTerRajin(jin,candilist,jinPalingRajin): # jin adalah nama jin yang akan d
     if(jumlahCandi(jin,candilist) > PalingRajin):
         return jin
     elif(jumlahCandi(jin,candilist) == PalingRajin):
-        if(jin > jinPalingRajin):
+        if(jin > jinPalingRajin): # menghitung leksografisnya
             return jin
+        else:
+            return jinPalingRajin
+    else:
+        return jinPalingRajin
 
 # jinTerajin adalah function yang digunakan untuk menentukan jin paling sedikit membuat candi saat itu
 # Algoritma
@@ -72,11 +90,15 @@ jika jumlah leksografis jin lebih besar dari jinPalingMalas maka akan me-return 
 '''
 def jinTerMalas(jin,candilist,jinPalingMalas): # jin adalah nama jin yang akan dibandingkan, candilist adalah list candi yang sudah ada, jinPalingMalas adalah jin yang paling sedikit membuat candi pada saat itu.
     PalingMalas = jumlahCandi(jinPalingMalas,candilist)
- 
+
     if(jumlahCandi(jin,candilist) < PalingMalas):
         return jin
     elif(jumlahCandi(jin,candilist) == PalingMalas):
         if(jin > jinPalingMalas):
             return jin
+        else: # jumlah leksografisnya lebih sedikit
+            return jinPalingMalas
+    else: # jumlahCandi(jin,candilist) > PalingMalas
+        return jinPalingMalas
            
 

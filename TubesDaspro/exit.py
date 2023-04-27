@@ -1,5 +1,4 @@
 import sys
-import BuildInFunction as Build
 import save as Saving # untuk melakukan save progres permainan
 import TempData as data
 def exit ():
