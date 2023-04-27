@@ -11,7 +11,7 @@ def kokokayam (candilist) :
     print("Jumlah Candi = ",a) # memberi output a sebagai variabel total candi
     if a==100: # apabila jumlah candi 100 maka bandung bondowoso menang
         print("Yah, Bandung Bondowoso memenangkan permainan!")
-        sys.exit("Program Keluar")# fungsi ini penentu siapa yang menang dan sebagai akhir dari permainan sehingga program akan keluar setelah ini
-    else : # apabila jumlah candi kurang dari 100 roro jonggrang menang
+        sys.exit("Program Keluar") # fungsi kokokayam ini adalah sebagai akhir permainan dan program akan keluar setelahnya
+    else : # apabila jumlah candi kurang dari 100 maka roro jonggrang menjadi pemenangnya
         print("\n*Bandung Bondowoso angry noise* \nRoro Jonggrang dikutuk menjadi candi.")
-        sys.exit("Program Keluar") # fungsi ini penentu siapa yang menang dan sebagai akhir dari permainan sehingga program akan keluar setelah ini
+        sys.exit("Program Keluar") # fungsi kokokayam ini adalah sebagai akhir permainan dan program akan keluar setelahnya
