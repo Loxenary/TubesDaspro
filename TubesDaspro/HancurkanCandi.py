@@ -3,7 +3,7 @@ def HancurkanCandi(candi):
     ID = int(input("Masukkan ID candi: ")) #variabel untuk id yang ingin user cek
     cek = False #boolean yang jika bernilai false maka id candi yang dimasukkan user tidak ada 
     for i in range (101): #looping yang digunakan untuk mengecek apakah id yang diingginkan user ada atau tidak
-        if candi[i][0] != ID : #jika waktu diiterasi pada i dan tidak sesuai dengan i maka akan dilanjutkan lagi loopnya
+        if candi[i][0] != ID : #jika waktu diiterasi pada i dan tidak sesuai dengan ID maka akan dilanjutkan lagi loopnya
             continue 
         else: 
             #jika ditemukan id yang sama maka loopnya akan berhenti dan cek nya akan bernilai true yang berarti id candi yang dimaksud user ditemukan
