@@ -66,15 +66,15 @@ def jumlahCandi(jin,candilist): # parameter jin adalah nama suatu jin, candilist
 '''
 PalingRajin akan mengambil jumlah candi dari jin paling rajin saat itu, kemudian akan di compare dengan jumlah candi pada jin.
 jika jumlah candi dari jin yang dibandingkan saat ini lebih banyak daripada yang paling rajin saat itu, maka akan me-return jin sebagai nama jinPalingRajin terbaru
-jika jumlah candinya sama, maka akan dibandingkan jumlah leksografis nya antara kedua jin. jika jin memiliki jumlah leksografis yang lebih besar, maka akan me-return
-jin sebagai jinPalingRajin saat itu dan jika lebih rendah maka jinPalingRajin akan tetap.
+jika jumlah candinya sama, maka akan dibandingkan jumlah leksografis nya antara kedua jin. jika jin memiliki jumlah leksografis yang lebih kecil, maka akan me-return
+jin sebagai jinPalingRajin saat itu dan jika lebih besar maka jinPalingRajin akan tetap.
 '''
 def jinTerRajin(jin,candilist,jinPalingRajin): # jin adalah nama jin yang akan dibandingkan, candilist adalah list candi yang sudah ada saat ini, jinPalingRajin adalah nama jin yang paling sering membuat jin saat itu  
     PalingRajin = jumlahCandi(jinPalingRajin,candilist)
     if(jumlahCandi(jin,candilist) > PalingRajin):
         return jin
     elif(jumlahCandi(jin,candilist) == PalingRajin):
-        if(jin > jinPalingRajin): # menghitung leksografisnya
+        if(jin < jinPalingRajin): # menghitung leksografisnya
             return jin
         else:
             return jinPalingRajin
