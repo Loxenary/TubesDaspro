@@ -8,7 +8,7 @@ def HancurkanCandi(candi):
     if(TotalCandi == 0): #jika total candi = 0 maka user tidak dapat menghancurkan candi karena tidak ada candi yang terbangun
         print("Total candi = 0 , maka tidak ada candi yang dapat dihancurkan")
     else: #total!=0 maka akan lihat ceknya
-        ID = int(input("Masukkan ID candi: ")) #variabel untuk id yang ingin user cek
+        ID = str(input("Masukkan ID candi: ")) #variabel untuk id yang ingin user cek
         cek = False #boolean yang jika bernilai false maka id candi yang dimasukkan user tidak ada 
         for i in range (101): #looping yang digunakan untuk mengecek apakah id yang diingginkan user ada atau tidak
             if candi[i][0] != ID : #jika waktu diiterasi pada i dan tidak sesuai dengan ID maka akan dilanjutkan lagi loopnya
