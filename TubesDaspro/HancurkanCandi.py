@@ -32,7 +32,7 @@ def HancurkanCandi(candi):
             if user == 1 :#user memilih masukkan ID lagi
                 HancurkanCandi(candi) #user akan diminta input ulang ID 
             else : #user memilih kembali ke menu utama
-                return 
+                print() 
 
         else: #jika True maka akan masuk kondisi dimana ada candi dengan id yang dimaksud user
             pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
