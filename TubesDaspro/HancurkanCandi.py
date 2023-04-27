@@ -24,8 +24,8 @@ def HancurkanCandi(candi):
                   \rApakah anda ingin memasukkan ID lagi atau kembali ke menu utama?
                   \rKetik 1 untuk masukkan ID lagi
                   \rKetik 2 untuk ke menu utama""") 
-            user = int(input("Ketik pilihan anda = "))
-            while user != 1 and user != 2 :
+            user = int(input("Ketik pilihan anda = ")) #user adalah keputusan dari user apakah dia akan kembali ke fitur hancurkan candi atau kembali ke menu utama
+            while user != 1 and user != 2 : #while disini digunakan jika user salah menginput angka
                 print("Masukkan anda salah, ketik yang benar!")
                 user = int(input("Ketik pilihan anda = "))
             
