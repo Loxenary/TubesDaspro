@@ -43,7 +43,7 @@ def Help(LoginState,Role):
             \r=========== HELP ===========
             \r1. logout
                 \r Untuk keluar dari akun yang digunakan sekarang
-            \r2. Hancurkancandi
+            \r2. hancurkancandi
                 \r Untuk menghancurkan candi yang tersedia
             \r3. ayamberkokok
                 \r Untuk menyelesaikan permainan dengan memalsukan pagi hari 
