@@ -6,35 +6,31 @@ def save():
     userFile_read = open(f'{path}/user.csv','rb')
     candiFile_read = open(f'{path}/candi.csv','rb')
     bahanFile_read = open(f'{path}/bahan_bangunan.csv','rb')
+
     folder_name = str(input("Masukkan nama folder: "))
     folder_path = os.path.join(parentFolder,folder_name) 
-    if(os.path.exists("save") == False): # parent save/ belum ada
-        os.makedirs(folder_path)
-        userFile_write = open(f'{folder_path}/user.csv',"wb")
-        userFile_write.write(userFile_read.read())
-        candiFile_write = open(f'{folder_path}/candi.csv',"wb")
-        candiFile_write.write(candiFile_read.read())
-        bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
-        bahanFile_write.write(bahanFile_read.read())    
+    if(os.path.exists(parentFolder) == False): # parent save/ belum ada
+        os.makedirs(folder_path)    
         print("\nSaving...")
         print(f"Membuat folder {parentFolder}")
         print(f"Membuat folder {folder_path}")
         print(f"\nBerhasil menyimpan data di folder {folder_path}")
 
     else: # parent save/ sudah ada
-        if(os.path.exists(folder_name) == True): # folder sudah ada
+        if(os.path.exists(folder_path) == True): # folder sudah ada
             print("\nSaving...")
             print(f"\nBerhasil menyimpan data di folder {folder_path}!")
         else: # parent save sudah ada tapi folder belum ada
             os.makedirs(folder_path,exist_ok=True)
             print("\nSaving...")
             print(f"\nBerhasil menyimpan data di folder {folder_path}!")
-            userFile_write = open(f'{folder_path}/user.csv',"wb")
-            userFile_write.write(userFile_read.read())
-            candiFile_write = open(f'{folder_path}/candi.csv',"wb")
-            candiFile_write.write(candiFile_read.read())
-            bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
-            bahanFile_write.write(bahanFile_read.read())    
+
+    userFile_write = open(f'{folder_path}/user.csv',"wb")
+    userFile_write.write(userFile_read.read())
+    candiFile_write = open(f'{folder_path}/candi.csv',"wb")
+    candiFile_write.write(candiFile_read.read())
+    bahanFile_write = open(f'{folder_path}/bahan_bangunan.csv',"wb")
+    bahanFile_write.write(bahanFile_read.read())   
     userFile_write.close()  
     candiFile_write.close()
     bahanFile_write.close()
