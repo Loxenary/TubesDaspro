@@ -19,7 +19,7 @@ def Help(LoginState,Role):
                 \r Untuk keluar dari akun yang digunakan sekarang
             \r2. summonjin
                 \r Untuk memanggil jin
-            \r3. hilangkanjin
+            \r3. hapusjin
                 \r Untuk menghilangkan jin
             \r4. ubahjin
                 \r Untuk Mengubah Role Jin dari Pengumpul ke Pembangun dan sebaliknya
