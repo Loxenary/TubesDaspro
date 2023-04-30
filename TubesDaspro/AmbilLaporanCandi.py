@@ -12,7 +12,7 @@ def laporancandi(list_candi):
             total_batu += int(list_candi[i][3])
             total_air += int(list_candi[i][4])
             harga_candi[i] = 10000*int(list_candi[i][2])+15000*int(list_candi[i][3])+int(list_candi[i][4])*7500
-        max=min=harga_candi[0]
+        max=min=harga_candi[1]
         idmax=idmin=0
         for i in range(101):
             if max<harga_candi[i]:
@@ -34,4 +34,4 @@ def laporancandi(list_candi):
             print('Total batu yang digunakan:',total_batu)
             print('Total air yang digunakan',total_air)
             print(f'ID Candi Termahal :{idmax+1} ({max})')
-            print(f'ID Candi Termahal :{idmin+1} ({min})')
+            print(f'ID Candi Termahal :{idmin} ({min})')
