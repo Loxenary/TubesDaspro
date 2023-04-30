@@ -3,7 +3,7 @@ def HapusJin (jinlist,candilist) :
     jumlahjin = 0 # sebagai variabel untuk menghitung jumlah jin pada jinlist
     username = str(input("Masukkan Username = ")) # untuk menginput username jin yang ingin dihapus
     for i in range(3,103): 
-        if(username != None): # untuk mengecek apakah ada username jin pada jinlist
+        if(jinlist[i][0] != None): # untuk mengecek apakah ada username jin pada jinlist
             jumlahjin += 1 # jika ada maka jumlahjin bertambah 1
         if(username == jinlist[i][0]): # melakukan pengecekan apakah terdapat username jin yang ingin dihapus pada jinlist
             a+=1 # jika ada maka a akan bertambah 1
