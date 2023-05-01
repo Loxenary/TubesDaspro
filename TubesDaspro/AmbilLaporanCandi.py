@@ -34,4 +34,4 @@ def laporancandi(list_candi):
             print('Total batu yang digunakan:',total_batu)
             print('Total air yang digunakan',total_air)
             print(f'ID Candi Termahal :{idmax+1} ({max})')
-            print(f'ID Candi Termahal :{idmin} ({min})')
+            print(f'ID Candi Termurah :{idmin} ({min})')
