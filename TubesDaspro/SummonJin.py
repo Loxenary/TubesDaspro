@@ -35,7 +35,7 @@ def SummonJin(jin):
                     #jika total count TIDAK SAMA dengan 100 ,maka menandakan ada data yang sama pada list jin atau username sudah digunakan 
                     print(f"\nUsername “{username}” sudah diambil!")
                     print(""" 
-                            \rApakah anda ingin memasukkan ID lagi atau kembali ke menu utama?
+                            \rApakah anda ingin memasukkan username lagi atau kembali ke menu utama?
                             \rKetik 1 untuk input username lagi
                             \rKetik 2 untuk ke menu utama""") 
                     user = int(input("Ketik pilihan anda = ")) #user adalah keputusan dari user apakah dia akan kembali ke fitur hancurkan candi atau kembali ke menu utama
