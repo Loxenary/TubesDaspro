@@ -11,9 +11,9 @@ def HapusJin (jinlist,candilist) :
             break # setelah ditemukan username jin yang ingin dihapus pada jinlist, loop akan berhenti
     if a>0 : # apabila terdapat username jin yang ingin dihapus pada jinlist
         pilihan = str(input(f"Apakah anda yakin ingin menghapus jin dengan username {username} , (Y/N)?\n"))
-        while pilihan != 'Y' and pilihan != 'N': # apabila input pilihan dari user tidak sesuai (bukan Y atau N) maka akan terjadi pengulangan input pilihan
+        while pilihan != 'Y' and pilihan != 'N' and pilihan!='y' and pilihan!='n': # apabila input pilihan dari user tidak sesuai (bukan Y atau N) maka akan terjadi pengulangan input pilihan
             pilihan = str(input("Masukkan input yang benar (Y/N) :  "))
-        if(pilihan == 'Y'): 
+        if(pilihan == 'Y' or pilihan == 'y'): 
             for i in range(3):
                 jinlist[indeks_jin][i] = None # untuk menghapus username jin pada jinnlist
             for i in range (0,101):
@@ -21,7 +21,7 @@ def HapusJin (jinlist,candilist) :
                     for j in range(5):
                         candilist[i][j] = None # untuk menghapus candi yang dibangun oleh jin yang dihapus
             print("Jin telah berhasil dihapus dari alam ghaib")
-        else: # fungsi akan mengulang kembali 
+        else: # fungsi akan mengulang kembali user menginput N/n
             print("Masukkan input ulang") 
             HapusJin(jinlist,candilist) 
     else:
@@ -30,12 +30,12 @@ def HapusJin (jinlist,candilist) :
         else: # apabila tidak ditemukan username jin yang ingin dihapus
             print("Tidak ada jin dengan username tersebut")  
             ulang = input("Apakah anda ingin kembali menginput username dan password atau kembali ke pusat control (Y/N)") # Apabila user ingin kembali ke menu utama
-            while ulang != "Y" and ulang != "N":
+            while ulang != "Y" and ulang != "N" and ulang!="y" and ulang!="y":
                 print("Masukkan input yang benar")  
                 ulang = input("Apakah anda ingin kembali menginput username dan password atau kembali ke pusat control (Y/N)")
-            if ulang == "Y":
+            if ulang == "Y" or ulang=="y":
                 HapusJin(jinlist,candilist)
-            else :
+            else :#ulang == "n"/"N"
                 return
          
 
