@@ -37,15 +37,16 @@ def HancurkanCandi(candi):
         else: #jika True maka akan masuk kondisi dimana ada candi dengan id yang dimaksud user
             pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
             #pilihan adalah variabel yang diinput user yang meminta apakah candi akan dihapus atau tidak
-            def keputusan(pilihan): #fungsi ini digunakan untuk mengeluarkan hasil dari pilihan user     
-                if pilihan == "y" or pilihan == "Y" :#jika user mengeluarkan y maka candi akan dihapuskan
-                    print("Candi telah berhasil dihancurkan.")
-                    for i in range(5):
-                        candi[no][i] = None #candi akan dihapuskan dengan menghapus data pada indeks yang sudah disimpan di variabel "no"
-                elif pilihan == "n" or pilihan == "N" : #jika user mengeluarkan n maka candi tidak akan dihapuskan
-                    print("Candi tidak jadi dihancurkan.")
-                else:  #jika user mengeluarkan selain n dan y , maka program akan meminta ulang user untuk menginput pilihan
-                    print("Masukkan salah")
-                    pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
-                    keputusan(pilihan)
-            keputusan(pilihan)
+            keputusan(pilihan,ID,candi,no)
+
+def keputusan(pilihan,ID,candi,no): #fungsi ini digunakan untuk mengeluarkan hasil dari pilihan user     
+    if pilihan == "y" or pilihan == "Y" :#jika user mengeluarkan y maka candi akan dihapuskan
+        print("Candi telah berhasil dihancurkan.")
+        for i in range(5):
+            candi[no][i] = None #candi akan dihapuskan dengan menghapus data pada indeks yang sudah disimpan di variabel "no"
+    elif pilihan == "n" or pilihan == "N" : #jika user mengeluarkan n maka candi tidak akan dihapuskan
+        print("Candi tidak jadi dihancurkan.")
+    else:  #jika user mengeluarkan selain n dan y , maka program akan meminta ulang user untuk menginput pilihan
+        print("Masukkan salah")
+        pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
+        keputusan(pilihan)
