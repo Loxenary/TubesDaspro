@@ -13,8 +13,10 @@ def laporancandi(list_candi):
             total_air += int(list_candi[i][4])#Penambahan jumlah air dengan banyak pasir yang digunakan candi[i]
             harga_candi[i] = 10000*int(list_candi[i][2])+15000*int(list_candi[i][3])+int(list_candi[i][4])*7500
             #Pengonversian bahan yang dipakai suatu candi menjadi sebuah integer dengan metode 10000*pasir+15000*batu+7500*air dan dimasukan ke list
-        max=min=harga_candi[1] #Dummy variabel untuk penentuan max dan min list harga candi
-        idmax=idmin=1 #Initial variabel penentuan max dan min
+        for i in range(101):
+            if harga_candi[i]!=0:
+                max=min=harga_candi[i]#Dummy variabel untuk penentuan max dan min list harga candi
+                idmax=idmin=i#Initial variabel penentuan max dan min
         for i in range(101): #Metode pencarian max dan min
             if max<harga_candi[i]:
                 max=harga_candi[i]
