@@ -5,7 +5,9 @@ def AmbilLaporanJin(userlist,candilist,bahanlist):
     jumlahJinPembangun = 0 # variable yang berisi jumlahjin yang punya role Pembangun
     jinPalingRajin = "-" # variable yang berisi nama jin paling banyak membuat candi (dengan urutan leksografis paling tinggi)
     jinPalingMalas = "-" # variable yang berisi nama jin paling sedikit membuat candi (dengan urutan leksofrafis paling tinggi)
-    inisialisasi = False
+    inisialisasi = False # variable untuk validasi inisialisasi variable jinPalingRajin dan jinPalingMalas
+    jumlahPembangunCandi = 0 # variable untuk validasi jumlah jin yang membangun candi dari jinPengumpul dan jinPembangun
+
     for i in range(3,103): # loop untuk userlist, dimulai dari indeks 3 karena jin yang muncul baru dimulai pada indeks 3, diakhiri 103 karena jumlah jin maks adalah 100
         if(userlist[i][2] == "Pengumpul"): 
             jumlahJinPengumpul += 1 
@@ -17,14 +19,15 @@ def AmbilLaporanJin(userlist,candilist,bahanlist):
                     jinPalingMalas = userlist[i][0]
                     jinPalingRajin = userlist[i][0]
                     inisialisasi = True
-
+                jumlahPembangunCandi += 1
                 jinPalingRajin = jinTerRajin(userlist[i][0],candilist,jinPalingRajin) # jinPalingRajin dan jinPalingMalas tetap dipanggil karena ada kemungkinan jin yang sudah membuat candi, saat diubah role nya
                 jinPalingMalas = jinTerMalas(userlist[i][0],candilist,jinPalingMalas) 
 
         elif (userlist[i][2] == "Pembangun"):
             jumlahJinPembangun += 1
             jumlahJin += 1
-            
+            jumlahPembangunCandi += 1
+
             if(inisialisasi == False): # inisialisasi jinPalingRajin dan jinPalingMalas paling awal
                 jinPalingRajin = userlist[i][0]
                 jinPalingMalas =userlist[i][0]
@@ -36,7 +39,7 @@ def AmbilLaporanJin(userlist,candilist,bahanlist):
             continue
         # jumlah jin ditambahkan dari 2 if statement karena akumulasi keduanya akan menghasilkan jumlah jin keseluruhan
     
-    if(jumlahJinPembangun <= 1): # asumsi: jika hanya terdapat 0-1 jin pembangun, maka dianggap tidak ada yang paling rajin maupun malas 
+    if(jumlahPembangunCandi <= 1): # asumsi: jika hanya terdapat 0-1 jin pembangun, maka dianggap tidak ada yang paling rajin maupun malas 
         jinPalingMalas = "-"
         jinPalingRajin = "-"
     print(f'''

@@ -17,7 +17,6 @@ def FuncUbahJin(userlist): #userlist merupakan list dari user pada user.csv
             break # break hanya digunakan untuk optimisasi agar tidak perlu meloop hingga selesai
         else:
             continue # continue agar loop berlanjut jika username belum ditemukan
-
     
     if(jumlahJin == 0): # validasi jika tidak ada jin, sehingga tidak terjadi infinite loop
         print("Tidak ada Jin yang dapat diubah role-nya")
@@ -44,6 +43,14 @@ def FuncUbahJin(userlist): #userlist merupakan list dari user pada user.csv
 
     else: # jika username jin tidak ditemukan
         print("Tidak ada jin dengan username tersebut")
-        FuncUbahJin(userlist) # jika username jin tidak ditemukan akan dilakukan pengulangan input
 
+        # perintah dibawah berfungsi jika user ingin atau tidak untuk menginput kembali jika terjadi kesalahan input
+        command = str(input("Apakah Anda ingin kembali menginput username atau kembali ke pusat control (Y/N) ") )
+        while command != "Y" and command != "N":
+            print("Masukkan input yang benar ")
+            command = str(input("Apakah Anda ingin kembali menginput username dan password atau kembali ke pusat control (Y/N) "))
+        if(command == "Y"):
+            FuncUbahJin(userlist) # melakukan loop untuk melakukan input ulang username
+        else: # kembali ke menu utama
+            print()
 
