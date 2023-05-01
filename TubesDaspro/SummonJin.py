@@ -24,6 +24,7 @@ def SummonJin(jin):
             username = input("\nMasukkan username jin: ")
             #variabel username akan meminta user memasukkan nama dari jin yang disummon
             cek = False #cek adalah boolean yang akan digunakan sebagai batasan dari while loop nya
+            balik_menu = False #boolean yang digunakan untuk penanda apakah user ingin balik ke menu atau tidak 
             count = 0 
             #count adalah variabel yang digunakan untuk menghitung jumlah total dari username pada list jin yang TIDAK SAMA dengan username (jika pada indeks tertentu pada list jin TIDAK SAMA dengan username , maka count nambah 1)
             while cek == False:     
@@ -32,36 +33,50 @@ def SummonJin(jin):
                         count +=1   
                 if count != 100 : 
                     #jika total count TIDAK SAMA dengan 100 ,maka menandakan ada data yang sama pada list jin atau username sudah digunakan 
-                    cek = False #maka cek akan tetap false untuk melooping ulang
                     print(f"\nUsername “{username}” sudah diambil!")
-                    count = 0 #count akan dimulai lagi dari 0
-                    username = input("\nMasukkan username jin: ")#dan user diminta untuk input username lagi
-                    continue
+                    print(""" 
+                            \rApakah anda ingin memasukkan ID lagi atau kembali ke menu utama?
+                            \rKetik 1 untuk input username lagi
+                            \rKetik 2 untuk ke menu utama""") 
+                    user = int(input("Ketik pilihan anda = ")) #user adalah keputusan dari user apakah dia akan kembali ke fitur hancurkan candi atau kembali ke menu utama
+                    while user != 1 and user != 2 : #while disini digunakan jika user salah menginput angka
+                        print("Masukkan anda salah, ketik yang benar!")
+                        user = int(input("Ketik pilihan anda = "))
+                    if user == 1 :
+                        cek = False  #cek akan tetap false agar kondisi nya tetap looping
+                        count = 0 #count akan dimulai lagi dari 0
+                        username = input("\nMasukkan username jin: ")#dan user diminta untuk input username lagi
+                        continue
+                    else: #user memilih kembali ke menu utama
+                        balik_menu = True #maka booleannya akan bernilai true
+                        break
                     
                 else: #jika total count = 100 , maka username belum diambil
                     cek = True
+            if balik_menu == True : #pada kondisi ini user akan kembali ke menu
+                print()
+            else: #pada kondisi ini maka user akan melanjutkan ke summonjin dengan input password
+                password = input("Masukkan password jin: ") #setelah itu user diminta memasukkan passwordnya
+                while not 5 <= len(password) <= 25 : 
+                    #jika huruf dari password kurang dari 5 dan lebih dari 25 maka user diminta input ulang 
+                    print("\nPassword panjangnya harus 5-25 karakter!")
+                    password = input("\nMasukkan password jin: ")
+                print(f"""
+                \rMengumpulkan sesajen...
+                \rMenyerahkan sesajen...
+                \rMembacakan mantra...
 
-            password = input("Masukkan password jin: ") #setelah itu user diminta memasukkan passwordnya
-            while not 5 <= len(password) <= 25 : 
-                #jika huruf dari password kurang dari 5 dan lebih dari 25 maka user diminta input ulang 
-                print("\nPassword panjangnya harus 5-25 karakter!")
-                password = input("\nMasukkan password jin: ")
-            print(f"""
-            \rMengumpulkan sesajen...
-            \rMenyerahkan sesajen...
-            \rMembacakan mantra...
+                \rJin {username} berhasil dipanggil!\n""") #maka summonjin sudah berhasil
 
-            \rJin {username} berhasil dipanggil!\n""") #maka summonjin sudah berhasil
-
-            for i in range (100):#loop ini digunakan untuk mengisi data jin yang baru dimasukkan user kedalam list jin
-                if jin[i][0] != None :
-                    continue
-                else:
-                    jin[i][0] = username
-                    jin[i][1] = password
-                    jin[i][2] = jenis_jin
-                    break
-            jumlah += 1 #dan jumlah total jin akan bertambah 1 
+                for i in range (100):#loop ini digunakan untuk mengisi data jin yang baru dimasukkan user kedalam list jin
+                    if jin[i][0] != None :
+                        continue
+                    else:
+                        jin[i][0] = username
+                        jin[i][1] = password
+                        jin[i][2] = jenis_jin
+                        break
+                jumlah += 1 #dan jumlah total jin akan bertambah 1 
 
 def jumlah_jin(user_file): #fungsi ini digunakan untuk menghitung berapa banyak jumlah jin yang ada
     jumlah = 0
