@@ -49,4 +49,4 @@ def keputusan(pilihan,ID,candi,no): #fungsi ini digunakan untuk mengeluarkan has
     else:  #jika user mengeluarkan selain n dan y , maka program akan meminta ulang user untuk menginput pilihan
         print("Masukkan salah")
         pilihan = input(f"Apakah anda yakin ingin menghancurkan candi ID: {ID} (Y/N)?")
-        keputusan(pilihan)
+        keputusan(pilihan)  
