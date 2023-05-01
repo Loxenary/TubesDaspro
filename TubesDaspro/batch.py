@@ -8,7 +8,7 @@ def batch (batch,jinlist,candilist,bahanlist):
     totaljinPembangun=0
     butuhpasir = 0
     butuhair = 0
-    butuhbatu = 0 
+    butuhbatu = 0 # Sebagai variabel awal seperti yang diatas
     jumlahAktifPembangun = 0 # asumsi : jika jumlah candi jika dilakukan batchbangun akan lebih dari 100, hanya jin yang membangun candi saja yang akan dihitung.
     if batch == "BatchKumpul": # Untuk menentukan batch yang dipilih oleh user
         for i in range(3,103): # loop untuk mencari jin dengan role pengumpul pada list
@@ -57,7 +57,7 @@ def batch (batch,jinlist,candilist,bahanlist):
         else :
             
             for i in range(totalcandi):
-                for j in range(101): # Untuk memindahkan value dari list sementara ke candilist
+                for j in range(101): # Bagian ini Untuk memindahkan value dari list sementara ke candilist
                     if(candilist[j][0] == None): 
                         jumlahAktifPembangun+= 1 # menghitung jumlah pasti dari totalcandi yang akan dibangun
                         candilist[j][0] = j 
@@ -65,6 +65,9 @@ def batch (batch,jinlist,candilist,bahanlist):
                         candilist[j][2] = tempCandi[i][2]
                         candilist[j][3] = tempCandi[i][3]
                         candilist[j][4] = tempCandi[i][4]
+                        bahanlist[1][2] = totalpasir
+                        bahanlist[3][2] = totalair
+                        bahanlist[2][2] = totalbatu
                         break
                     else:
                         continue
