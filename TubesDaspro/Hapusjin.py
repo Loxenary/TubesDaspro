@@ -23,7 +23,7 @@ def HapusJin (jinlist,candilist) :
             print("Jin telah berhasil dihapus dari alam ghaib")
         else: # fungsi akan mengulang kembali 
             print("Masukkan input ulang") 
-            HapusJin(jinlist) 
+            HapusJin(jinlist,candilist) 
     else:
         if(jumlahjin == 0): # apabila tidak terdapat satupun jin pada jinlist
             print("Tidak ada jin yang dapat dihapus")
