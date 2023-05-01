@@ -29,5 +29,13 @@ def HapusJin (jinlist,candilist) :
             print("Tidak ada jin yang dapat dihapus")
         else: # apabila tidak ditemukan username jin yang ingin dihapus
             print("Tidak ada jin dengan username tersebut")  
-            HapusJin(jinlist,candilist)
+            ulang = input("Apakah anda ingin kembali menginput username dan password atau kembali ke pusat control (Y/N)") # Apabila user ingin kembali ke menu utama
+            while ulang != "Y" and ulang != "N":
+                print("Masukkan input yang benar")  
+                ulang = input("Apakah anda ingin kembali menginput username dan password atau kembali ke pusat control (Y/N)")
+            if ulang == "Y":
+                HapusJin(jinlist,candilist)
+            else :
+                return
+         
 
